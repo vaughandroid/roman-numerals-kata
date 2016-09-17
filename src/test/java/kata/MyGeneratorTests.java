@@ -11,9 +11,10 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class MyGeneratorTests {
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "{index}: {0}=\"{1}\"")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
+                // 1-10
                 { 1,    "I" },
                 { 2,    "II" },
                 { 3,    "III" },
@@ -24,6 +25,15 @@ public class MyGeneratorTests {
                 { 8,    "VIII" },
                 { 9,    "IX" },
                 { 10,   "X" },
+
+                // Symbols
+                { 1,    "I" },
+                { 5,    "V" },
+                { 10,   "X" },
+                { 50,   "L" },
+                { 100,  "C" },
+                { 500,  "D" },
+                { 1000, "M" },
         });
     }
 
