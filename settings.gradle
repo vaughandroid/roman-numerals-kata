@@ -1,0 +1,4 @@
+rootProject.name = 'roman-numerals-kata'
+include 'app'
+findProject(':app')?.name = 'roman-numerals-kata'
+
