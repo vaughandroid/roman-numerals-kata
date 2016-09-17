@@ -4,35 +4,24 @@ public class MyGenerator implements RomanNumeralGenerator {
 
     @Override
     public String generate(int number) {
+        String result = "";
         for (Symbol s : Symbol.values()) {
-            if (number == s.number) {
-                return s.toString();
+            while (number >= s.number) {
+                result += s.toString();
+                number -= s.number;
             }
         }
-
-        switch(number) {
-            case 1: return "I";
-            case 2: return "II";
-            case 3: return "III";
-            case 4: return "IV";
-            case 5: return "V";
-            case 6: return "VI";
-            case 7: return "VII";
-            case 8: return "VIII";
-            case 9: return "IX";
-            case 10: return "X";
-            default: return null;
-        }
+        return result;
     }
 
     private enum Symbol {
-        I(1),
-        V(5),
-        X(10),
-        L(50),
-        C(100),
+        M(1000),
         D(500),
-        M(1000);
+        C(100),
+        L(50),
+        X(10),
+        V(5),
+        I(1);
 
         public final int number;
 
