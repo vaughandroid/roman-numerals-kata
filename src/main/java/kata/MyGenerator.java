@@ -17,6 +17,13 @@ public class MyGenerator implements RomanNumeralGenerator {
         SYMBOL_SETS.add(new SymbolSet(I, V, X));
     }
 
+    /**
+     * Express a given number as Roman numerals, according to the "standard" form described
+     * <a href="https://en.wikipedia.org/wiki/Roman_numerals">here</a>.
+     *
+     * @param number value to be represented, must be between 1 and 3999
+     * @return the value expressed as Roman numerals, or 0 if the value is out of range
+     */
     @Override
     public String generate(int number) {
         if (number <= 0 || number >= 4000) {
@@ -25,10 +32,10 @@ public class MyGenerator implements RomanNumeralGenerator {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (SymbolSet set : SYMBOL_SETS) {
-            int count = number / set.one.number;
+            int count = number / set.single.number;
             switch (count) {
                 case 4:
-                    stringBuilder.append(set.one).append(set.five);
+                    stringBuilder.append(set.single).append(set.five);
                     break;
                 case 5:
                 case 6:
@@ -36,23 +43,27 @@ public class MyGenerator implements RomanNumeralGenerator {
                 case 8:
                     stringBuilder.append(set.five);
                     for (int i = 5; i < count; i++) {
-                        stringBuilder.append(set.one);
+                        stringBuilder.append(set.single);
                     }
                     break;
                 case 9:
-                    stringBuilder.append(set.one).append(set.ten);
+                    stringBuilder.append(set.single).append(set.ten);
                     break;
                 default:
                     for (int i = 0; i < count; i++) {
-                        stringBuilder.append(set.one);
+                        stringBuilder.append(set.single);
                     }
                     break;
             }
-            number -= set.one.number * count;
+            number -= set.single.number * count;
         }
+
         return stringBuilder.toString();
     }
 
+    /**
+     * A Roman numeral symbol, and its numeric value.
+     */
     enum Symbol {
         M(1000),
         D(500),
@@ -65,18 +76,17 @@ public class MyGenerator implements RomanNumeralGenerator {
         public final int number;
 
         Symbol(int number) {
-
             this.number = number;
         }
     }
 
     private static class SymbolSet {
-        final Symbol one;
+        final Symbol single;
         final Symbol five;
         final Symbol ten;
 
-        private SymbolSet(Symbol one, Symbol five, Symbol ten) {
-            this.one = one;
+        private SymbolSet(Symbol single, Symbol five, Symbol ten) {
+            this.single = single;
             this.five = five;
             this.ten = ten;
         }
