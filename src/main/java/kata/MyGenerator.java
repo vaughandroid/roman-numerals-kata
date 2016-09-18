@@ -26,22 +26,24 @@ public class MyGenerator implements RomanNumeralGenerator {
             switch (count) {
                 case 4:
                     result += set.one.toString() + set.five.toString();
-                    count = 0;
                     break;
                 case 5:
                 case 6:
                 case 7:
                 case 8:
                     result += set.five.toString();
-                    count -= 5;
+                    for (int i = 5; i < count; i++) {
+                        result += set.one.toString();
+                    }
                     break;
                 case 9:
                     result += set.one.toString() + set.ten.toString();
-                    count = 0;
                     break;
-            }
-            for (int i = 0; i < count; i++) {
-                result += set.one.toString();
+                default:
+                    for (int i = 0; i < count; i++) {
+                        result += set.one.toString();
+                    }
+                    break;
             }
         }
         return result;
