@@ -37,9 +37,17 @@ public class MyGeneratorTests {
                 { 1666, "MDCLXVI" },
                 { 3888, "MMMDCCCLXXXVIII" },
 
-                // TODO: Subtractive notation
-//                { 4,    "IV" },
-//                { 9,    "IX" },
+                // Subtractive notation
+                { 4,    "IV" },
+                { 9,    "IX" },
+                { 14,   "XIV" },
+                { 19,   "XIX" },
+
+                // TODO: limit checks
+//                { 0,    null },
+//                { 1,    "I" },
+//                { 3999, "MMMCMXCIX" },
+//                { 4000, null },
         });
     }
 
