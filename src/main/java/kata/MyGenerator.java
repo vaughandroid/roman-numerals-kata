@@ -19,34 +19,34 @@ public class MyGenerator implements RomanNumeralGenerator {
 
     @Override
     public String generate(int number) {
-        String result = "";
+        StringBuilder stringBuilder = new StringBuilder();
         for (SymbolSet set : SYMBOL_SETS) {
             int count = number / set.one.number;
             number -= set.one.number * count;
             switch (count) {
                 case 4:
-                    result += set.one.toString() + set.five.toString();
+                    stringBuilder.append(set.one).append(set.five);
                     break;
                 case 5:
                 case 6:
                 case 7:
                 case 8:
-                    result += set.five.toString();
+                    stringBuilder.append(set.five);
                     for (int i = 5; i < count; i++) {
-                        result += set.one.toString();
+                        stringBuilder.append(set.one);
                     }
                     break;
                 case 9:
-                    result += set.one.toString() + set.ten.toString();
+                    stringBuilder.append(set.one).append(set.ten);
                     break;
                 default:
                     for (int i = 0; i < count; i++) {
-                        result += set.one.toString();
+                        stringBuilder.append(set.one);
                     }
                     break;
             }
         }
-        return result;
+        return stringBuilder.toString();
     }
 
     enum Symbol {
