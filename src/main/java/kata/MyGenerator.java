@@ -19,10 +19,13 @@ public class MyGenerator implements RomanNumeralGenerator {
 
     @Override
     public String generate(int number) {
+        if (number <= 0 || number >= 4000) {
+            return null;
+        }
+
         StringBuilder stringBuilder = new StringBuilder();
         for (SymbolSet set : SYMBOL_SETS) {
             int count = number / set.one.number;
-            number -= set.one.number * count;
             switch (count) {
                 case 4:
                     stringBuilder.append(set.one).append(set.five);
@@ -45,6 +48,7 @@ public class MyGenerator implements RomanNumeralGenerator {
                     }
                     break;
             }
+            number -= set.one.number * count;
         }
         return stringBuilder.toString();
     }

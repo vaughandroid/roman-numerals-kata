@@ -43,11 +43,11 @@ public class MyGeneratorTests {
                 { 14,   "XIV" },
                 { 19,   "XIX" },
 
-                // TODO: limit checks
-//                { 0,    null },
-//                { 1,    "I" },
-//                { 3999, "MMMCMXCIX" },
-//                { 4000, null },
+                // Limit checks
+                { 0,    null },
+                { 1,    "I" },
+                { 3999, "MMMCMXCIX" },
+                { 4000, null },
         });
     }
 
